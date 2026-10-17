@@ -22,8 +22,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: npm
-      # Use `npm ci` instead once package-lock.json is committed.
+        
       - run: npm install
       - run: npm run build
       - uses: actions/upload-pages-artifact@v3
