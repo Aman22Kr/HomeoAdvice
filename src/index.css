@@ -1,0 +1,60 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --c-primary: 14 110 140;
+  --c-primary-dark: 9 78 100;
+  --c-primary-soft: 228 243 248;
+  --c-accent: 242 140 40;
+  --c-accent-dark: 214 112 18;
+  --c-surface: 255 255 255;
+  --c-surface-alt: 244 248 250;
+  --c-ink: 24 36 46;
+  --c-muted: 98 112 124;
+  --c-line: 222 230 236;
+}
+.dark {
+  --c-primary: 70 170 200;
+  --c-primary-dark: 40 130 160;
+  --c-primary-soft: 22 44 54;
+  --c-accent: 248 160 70;
+  --c-accent-dark: 230 135 40;
+  --c-surface: 15 23 30;
+  --c-surface-alt: 22 32 41;
+  --c-ink: 232 238 242;
+  --c-muted: 160 174 186;
+  --c-line: 42 56 68;
+}
+
+@layer base {
+  html { scroll-behavior: smooth; }
+  body { @apply bg-surface font-sans text-ink antialiased; }
+  h1, h2, h3 { @apply font-display text-ink; }
+  :focus-visible { @apply outline-2 outline-offset-2 outline-accent; }
+}
+
+@layer components {
+  .container-x { @apply mx-auto w-full max-w-page px-4 sm:px-6 lg:px-8; }
+  .section { @apply py-14 md:py-20; }
+  .btn { @apply inline-flex items-center justify-center gap-2 rounded-md px-5 py-2.5 text-sm font-semibold transition-colors duration-200; }
+  .btn-primary { @apply btn bg-primary text-white hover:bg-primary-dark dark:text-surface; }
+  .btn-accent { @apply btn bg-accent text-white hover:bg-accent-dark dark:text-surface; }
+  .btn-outline { @apply btn border border-primary text-primary hover:bg-primary hover:text-white dark:hover:text-surface; }
+  .card { @apply rounded-lg border border-line bg-surface shadow-card transition duration-300; }
+  .card-hover { @apply hover:-translate-y-1 hover:border-primary/50; }
+  .input { @apply w-full rounded-md border border-line bg-surface px-3 py-2.5 text-sm text-ink placeholder:text-ink-muted focus:border-primary focus:outline-none; }
+  .eyebrow { @apply text-xs font-semibold uppercase tracking-[0.2em] text-accent; }
+}
+
+/* Motion OFF: disable decorative transitions/animations */
+[data-motion='OFF'] *, [data-motion='OFF'] *::before, [data-motion='OFF'] *::after {
+  transition: none !important;
+  animation: none !important;
+  scroll-behavior: auto !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; scroll-behavior: auto !important; }
+}
+.marquee { animation: marquee 30s linear infinite; }
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
